@@ -56,9 +56,9 @@ export default function TimerDisplay() {
         <h1 className="text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF]">
           17 : 59
         </h1>
-        <h3 className="tracking-[13.13px] text-[#D7E0FF] text-[14px] leading-[20.73px] font-bold">
+        <button className="tracking-[13.13px] text-[#D7E0FF] text-[14px] leading-[20.73px] font-bold">
           PAUSE
-        </h3>
+        </button>
       </div>
     </div>
   );
