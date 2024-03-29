@@ -1,5 +1,8 @@
-import React from "react";
+import Image from "next/image";
+import settingSvg from "../../../public/assets/icon-settings.svg";
 
 export default function Settings() {
-  return <div>Settings</div>;
+  return (
+    <Image src={settingSvg} alt="setting svg" className="hover:fill-[red]" />
+  );
 }

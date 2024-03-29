@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import Settings from "./components/Settings";
 import TimerDisplay from "./components/TimerDisplay";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <Header />
       <NavBar />
       <TimerDisplay />
+      <Settings />
     </div>
   );
 }
