@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TimerDisplay() {
   return (
-    <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] my-[50px] rounded-full shadow-mobile-shadow bg-dark-blue flex justify-center items-center relative">
+    <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] my-[50px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
       <audio className="hidden"></audio>
       <svg
         width="267.805px"
@@ -52,6 +52,14 @@ export default function TimerDisplay() {
           fill="transparent"
         ></circle>
       </svg>
+      <div className="flex flex-col w-full justify-center items-center gap-[5px]">
+        <h1 className="text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF]">
+          17 : 59
+        </h1>
+        <h3 className="tracking-[13.13px] text-[#D7E0FF] text-[14px] leading-[20.73px] font-bold">
+          PAUSE
+        </h3>
+      </div>
     </div>
   );
 }
