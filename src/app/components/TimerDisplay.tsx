@@ -18,7 +18,6 @@ export default function TimerDisplay() {
           stroke="red"
           strokeWidth="10px"
           strokeDasharray="753px"
-          // strokeDashoffset={calculateDashoffset}
         ></circle>
         <circle
           id="circle2"
@@ -42,7 +41,6 @@ export default function TimerDisplay() {
           stroke="red"
           strokeWidth="20px"
           strokeDasharray="1161px"
-          // strokeDashoffset={calculateDashoffsetTablet}
         ></circle>
         <circle
           id="circle2"
