@@ -18,7 +18,6 @@ export default function NavBar() {
           long break
         </h3>
       </div>
-      <circle></circle>
     </div>
   );
 }
