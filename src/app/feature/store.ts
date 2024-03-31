@@ -10,3 +10,5 @@ const store = configureStore({
 export type RootState = {
   openSetting: SettingProps;
 };
+
+export default store;
