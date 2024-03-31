@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function SettingPanel() {
   return (
-    <div className="w-screen h-screen absolute top-0 left-0 flex flex-col bg-[#0a0c1c80] justify-center items-center">
+    <div className="w-screen h-screen absolute top-0 left-0 flex flex-col px-[15px] bg-[#0a0c1c80] justify-center items-center">
       <div className="pt-9 pb-14 w-full max-w-[540px] bg-[#FFFFFF] rounded-3xl">
         <div className="px-6 md:px-10 flex justify-between items-center">
           <h3 className="text-[20px] text-[#161932] font-bold leading-[24.8px]">
