@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TimerDisplay() {
   return (
-    <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] my-[50px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
+    <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] mt-[50px] mb-[100px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
       <audio className="hidden"></audio>
       <svg
         width="267.805px"
