@@ -1,18 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface ShortBreakProps {
-  shortBreak: string;
+  shortBreak: number;
 }
 
 const initialState: ShortBreakProps = {
-  shortBreak: "5",
+  shortBreak: 5,
 };
 
 const ShortBreakSlice = createSlice({
   name: "shortBreak",
   initialState,
   reducers: {
-    setShortBreak: (state, action: PayloadAction<string>) => {
+    setShortBreak: (state, action: PayloadAction<number>) => {
       state.shortBreak = action.payload;
     },
   },

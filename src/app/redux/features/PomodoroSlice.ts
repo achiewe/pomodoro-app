@@ -1,18 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface PomodoroProps {
-  pomodoroTimer: string;
+  pomodoroTimer: number;
 }
 
 const initialState: PomodoroProps = {
-  pomodoroTimer: "25",
+  pomodoroTimer: 25,
 };
 
 const PomodoroSlice = createSlice({
   name: "pomodoroTimer",
   initialState,
   reducers: {
-    setPomodoroTimer: (state, action: PayloadAction<string>) => {
+    setPomodoroTimer: (state, action: PayloadAction<number>) => {
       state.pomodoroTimer = action.payload;
     },
   },

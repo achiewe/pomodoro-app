@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenSetting } from "../redux/features/OpenSettingSlice";
 import { RootState } from "../redux/store";
+import { setPomodoroTimer } from "../redux/features/PomodoroSlice";
 
 export default function SettingPanel() {
   const dispatch = useDispatch();
@@ -64,7 +65,13 @@ export default function SettingPanel() {
                   {pomodoroTimer}
                 </h3>
                 <div className="flex flex-col gap-2 cursor-pointer">
-                  <Image src={upArrow} alt="up arrow" />
+                  <Image
+                    src={upArrow}
+                    alt="up arrow"
+                    onClick={() => {
+                      setPomodoroTimer(pomodoroTimer + 1);
+                    }}
+                  />
                   <Image src={downArrow} alt="down arrow" />
                 </div>
               </div>

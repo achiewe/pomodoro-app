@@ -1,18 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface LongBreakProps {
-  longBreak: string;
+  longBreak: number;
 }
 
 const initialState: LongBreakProps = {
-  longBreak: "15",
+  longBreak: 15,
 };
 
 const LongBreakSlice = createSlice({
   name: "longBreak",
   initialState,
   reducers: {
-    setLongBreak: (state, action: PayloadAction<string>) => {
+    setLongBreak: (state, action: PayloadAction<number>) => {
       state.longBreak = action.payload;
     },
   },
