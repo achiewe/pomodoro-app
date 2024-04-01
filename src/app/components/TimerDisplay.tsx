@@ -11,6 +11,12 @@ export default function TimerDisplay() {
   const pomodoroTimer = useSelector(
     (store: RootState) => store.pomodoroTimer.pomodoroTimer
   );
+  const shortBreak = useSelector(
+    (store: RootState) => store.shortBreak.shortBreak
+  );
+  const longBreak = useSelector(
+    (store: RootState) => store.longBreak.longBreak
+  );
   return (
     <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] mt-[50px] mb-[100px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
       <audio className="hidden"></audio>
