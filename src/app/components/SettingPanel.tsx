@@ -2,14 +2,21 @@
 import upArrow from "../../../public/assets/icon-arrow-up.svg";
 import downArrow from "../../../public/assets/icon-arrow-down.svg";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOpenSetting } from "../redux/features/OpenSettingSlice";
+import { RootState } from "../redux/store";
 
 export default function SettingPanel() {
   const dispatch = useDispatch();
+  const openSetting = useSelector((store: RootState) => store.openSetting);
+  console.log(openSetting);
 
   return (
-    <div className="w-screen h-screen absolute top-0 left-0 flex flex-col px-[15px] bg-[#0a0c1c80] md:px-0 justify-center items-center">
+    <div
+      className={`w-screen h-screen absolute top-0 left-0 ${
+        openSetting ? "hidden" : "flex"
+      } flex-col px-[15px] bg-[#0a0c1c80] md:px-0 justify-center items-center`}
+    >
       <div className="pt-9 pb-14 w-full max-w-[540px] bg-[#FFFFFF] rounded-3xl">
         <div className="px-6 md:px-10 flex justify-between items-center">
           <h3 className="text-[20px] text-[#161932] font-bold leading-[24.8px]">
@@ -20,7 +27,7 @@ export default function SettingPanel() {
             width="14"
             height="14"
             onClick={() => {
-              dispatch(setOpenSetting());
+              dispatch(setOpenSetting(false));
             }}
           >
             <path

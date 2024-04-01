@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface SettingProps {
   openSetting: boolean;
@@ -12,8 +12,8 @@ const OpenSettingSlice = createSlice({
   name: "openSetting",
   initialState,
   reducers: {
-    setOpenSetting: (state) => {
-      state.openSetting = !state.openSetting;
+    setOpenSetting: (state, action: PayloadAction<boolean>) => {
+      state.openSetting = action.payload;
     },
   },
 });
