@@ -69,7 +69,9 @@ export default function SettingPanel() {
                     src={upArrow}
                     alt="up arrow"
                     onClick={() => {
-                      setPomodoroTimer(pomodoroTimer + 1);
+                      if (pomodoroTimer < 60) {
+                        dispatch(setPomodoroTimer(pomodoroTimer + 1));
+                      }
                     }}
                   />
                   <Image src={downArrow} alt="down arrow" />
