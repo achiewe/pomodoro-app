@@ -68,7 +68,13 @@ export default function TimerDisplay() {
       </svg>
       <div className="flex flex-col w-full justify-center items-center gap-[5px]">
         <h1 className="text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF]">
-          {panelOption === "pomodoro" ? pomodoroTimer : "koko"}
+          {panelOption === "pomodoro"
+            ? pomodoroTimer
+            : panelOption === "short break"
+            ? shortBreak
+            : panelOption === "long break"
+            ? longBreak
+            : ""}
         </h1>
         <button className="tracking-[13.13px] text-[#D7E0FF] text-[14px] leading-[20.73px] font-bold">
           PAUSE
