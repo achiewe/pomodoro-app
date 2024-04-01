@@ -20,7 +20,11 @@ export default function NavBar() {
           panelOption === "pomodoro" ? "bg-[red]" : "bg-[#161932]"
         } w-[106px] flex justify-center items-center h-[48px] rounded-[25px]`}
       >
-        <h3 className="text-[12px] leading-[17.77px] font-bold text-[#D7E0FF]">
+        <h3
+          className={`text-[12px] leading-[17.77px] font-bold ${
+            panelOption === "pomodoro" ? "text-[#1E213F]" : "text-[#D7E0FF]"
+          }`}
+        >
           pomodoro
         </h3>
       </div>
@@ -32,7 +36,11 @@ export default function NavBar() {
           dispatch(setPanelOption("short break"));
         }}
       >
-        <h3 className="text-[12px] leading-[17.77px] font-bold text-[#D7E0FF]">
+        <h3
+          className={`text-[12px] leading-[17.77px] font-bold ${
+            panelOption === "short break" ? "text-[#1E213F]" : "text-[#D7E0FF]"
+          }`}
+        >
           short break
         </h3>
       </div>
@@ -44,7 +52,11 @@ export default function NavBar() {
           dispatch(setPanelOption("long break"));
         }}
       >
-        <h3 className="text-[12px] leading-[17.77px] font-bold text-[#D7E0FF]">
+        <h3
+          className={`text-[12px] leading-[17.77px] font-bold ${
+            panelOption === "long break" ? "text-[#1E213F]" : "text-[#D7E0FF]"
+          }`}
+        >
           long break
         </h3>
       </div>
