@@ -9,6 +9,9 @@ export default function NavBar() {
   const panelOption = useSelector(
     (store: RootState) => store.panelOption.panelOption
   );
+  const contentColor = useSelector(
+    (store: RootState) => store.contentColor.contentColor
+  );
 
   return (
     <div className="w-[327px] flex flex-row items-center gap-[10px] rounded-[25px] bg-[#161932] p-[5px]">
@@ -17,7 +20,13 @@ export default function NavBar() {
           dispatch(setPanelOption("pomodoro"));
         }}
         className={`${
-          panelOption === "pomodoro" ? "bg-[red]" : "bg-[#161932]"
+          panelOption === "pomodoro" && contentColor === "red"
+            ? "bg-[#F87070]"
+            : contentColor === "green"
+            ? "bg-[#70F3F8]"
+            : contentColor === "purple"
+            ? "bg-[#D881F8]"
+            : "bg-[#161932]"
         } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
       >
         <h3
