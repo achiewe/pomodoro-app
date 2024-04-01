@@ -1,13 +1,9 @@
 "use client";
-import upArrow from "../../../public/assets/icon-arrow-up.svg";
-import downArrow from "../../../public/assets/icon-arrow-down.svg";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenSetting } from "../redux/features/OpenSettingSlice";
 import { RootState } from "../redux/store";
-import { setPomodoroTimer } from "../redux/features/PomodoroSlice";
-import { setShortBreak } from "../redux/features/ShortBreakSlice";
-import { setLongBreak } from "../redux/features/LongBreakSlice";
+import SettingsTime from "./SettingsTime";
+import SettingsFont from "./SettingsFont";
 
 export default function SettingPanel() {
   const dispatch = useDispatch();
@@ -57,115 +53,9 @@ export default function SettingPanel() {
           <h3 className="mt-6 text-xs md:text-sm text-dark-blu font-bold tracking-[5px] text-center">
             TIME (MINUTES)
           </h3>
-          <div className="flex flex-col md:flex-row gap-2 md:gap-5 mt-4 md:mt-6">
-            <div className="flex md:flex-col items-center md:items-start justify-between gap-20 md:gap-2">
-              <h3 className="text-xs md:text-sm text-semi-blu font-bold opacity-40">
-                pomodoro
-              </h3>
-              <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-                <h3 className="text-sm text-semi-blu font-bold">
-                  {pomodoroTimer}
-                </h3>
-                <div className="flex flex-col gap-2 cursor-pointer">
-                  <Image
-                    src={upArrow}
-                    alt="up arrow"
-                    onClick={() => {
-                      if (pomodoroTimer < 60) {
-                        dispatch(setPomodoroTimer(pomodoroTimer + 1));
-                      }
-                    }}
-                  />
-                  <Image
-                    src={downArrow}
-                    onClick={() => {
-                      if (pomodoroTimer > 1) {
-                        dispatch(setPomodoroTimer(pomodoroTimer - 1));
-                      }
-                    }}
-                    alt="down arrow"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex md:flex-col items-center md:items-start justify-between gap-20 md:gap-2">
-              <h3 className="text-xs md:text-sm text-semi-blu font-bold opacity-40">
-                short break
-              </h3>
-              <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-                <h3 className="text-sm text-semi-blu font-bold">
-                  {shortBreak}
-                </h3>
-                <div className="flex flex-col gap-2 cursor-pointer">
-                  <Image
-                    src={upArrow}
-                    alt="up arrow"
-                    onClick={() => {
-                      if (shortBreak < 20) {
-                        dispatch(setShortBreak(shortBreak + 1));
-                      }
-                    }}
-                  />
-                  <Image
-                    src={downArrow}
-                    alt="down arrow"
-                    onClick={() => {
-                      if (shortBreak > 5) {
-                        dispatch(setShortBreak(shortBreak - 1));
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex md:flex-col items-center md:items-start justify-between gap-20 md:gap-2">
-              <h3 className="text-xs md:text-sm text-semi-blu font-bold opacity-40">
-                long break
-              </h3>
-              <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-                <h3 className="text-sm text-semi-blu font-bold">{longBreak}</h3>
-                <div className="flex flex-col gap-2 cursor-pointer">
-                  <Image
-                    src={upArrow}
-                    alt="up arrow"
-                    onClick={() => {
-                      if (longBreak < 30) {
-                        dispatch(setLongBreak(longBreak + 1));
-                      }
-                    }}
-                  />
-                  <Image
-                    src={downArrow}
-                    alt="down arrow"
-                    onClick={() => {
-                      if (longBreak > 15) {
-                        dispatch(setLongBreak(longBreak - 1));
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <SettingsTime />
           <div className="w-full h-[1px] bg-[#E3E1E1] mt-6"></div>
-          <div className="flex flex-col md:flex-row md:justify-between items-center">
-            <h3 className="mt-6 text-[11px] md:text-sm text-[#161932] font-bold tracking-[5px] text-center">
-              FONT
-            </h3>
-            <div className="flex items-center gap-4 mt-4">
-              <button className="w-10 h-10 rounded-full text-base font-base flex items-center justify-center bg-[#EFF1FA] kumbh">
-                Aa
-              </button>
-              <button className="w-10 h-10 rounded-full text-base font-base flex items-center justify-center bg-[#EFF1FA] kumbh">
-                Aa
-              </button>
-              <button className="w-10 h-10 rounded-full text-base font-base flex items-center justify-center bg-[#EFF1FA] kumbh">
-                Aa
-              </button>
-            </div>
-          </div>
+          <SettingsFont />
           <div className="w-full h-[1px] bg-[#E3E1E1] mt-6"></div>
           <div className="flex flex-col md:flex-row md:justify-between items-center md:mt-6">
             <h3 className="mt-6 md:mt-0 text-[11px] md:text-sm text-dark-blu font-bold tracking-[5px] text-center">
