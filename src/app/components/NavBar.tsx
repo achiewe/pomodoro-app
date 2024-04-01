@@ -22,9 +22,9 @@ export default function NavBar() {
         className={`${
           panelOption === "pomodoro" && contentColor === "red"
             ? "bg-[#F87070]"
-            : contentColor === "green"
+            : panelOption === "pomodoro" && contentColor === "green"
             ? "bg-[#70F3F8]"
-            : contentColor === "purple"
+            : panelOption === "pomodoro" && contentColor === "purple"
             ? "bg-[#D881F8]"
             : "bg-[#161932]"
         } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
@@ -41,7 +41,14 @@ export default function NavBar() {
       </div>
       <div
         className={`${
-          panelOption === "short break" ? "bg-[red]" : "bg-[#161932]"
+          panelOption === "short break" && contentColor === "red"
+            ? "bg-[#F87070]"
+            : panelOption === "short break" && contentColor === "green"
+            ? "bg-[#70F3F8]"
+            : panelOption === "short break" && contentColor === "purple"
+            ? "bg-[#D881F8]"
+            : "bg-[#161932]"
+        }
         } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
         onClick={() => {
           dispatch(setPanelOption("short break"));
@@ -59,7 +66,13 @@ export default function NavBar() {
       </div>
       <div
         className={`${
-          panelOption === "long break" ? "bg-[red]" : "bg-[#161932]"
+          panelOption === "long break" && contentColor === "red"
+            ? "bg-[#F87070]"
+            : panelOption === "long break" && contentColor === "green"
+            ? "bg-[#70F3F8]"
+            : panelOption === "long break" && contentColor === "purple"
+            ? "bg-[#D881F8]"
+            : "bg-[#161932]"
         } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
         onClick={() => {
           dispatch(setPanelOption("long break"));
