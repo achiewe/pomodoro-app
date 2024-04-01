@@ -64,7 +64,15 @@ export default function TimerDisplay() {
           cy="205px"
           r="185px"
           fill="transparent"
-          stroke="red"
+          stroke={
+            contentColor === "red"
+              ? "#F87070"
+              : contentColor === "green"
+              ? "#70F3F8"
+              : contentColor === "purple"
+              ? "#D881F8"
+              : ""
+          }
           strokeWidth="20px"
           strokeDasharray="1161px"
         ></circle>
