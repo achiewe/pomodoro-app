@@ -5,7 +5,7 @@ export interface PomodoroProps {
 }
 
 const initialState: PomodoroProps = {
-  pomodoroTimer: "25:00",
+  pomodoroTimer: "25",
 };
 
 const PomodoroSlice = createSlice({

@@ -5,7 +5,7 @@ export interface LongBreakProps {
 }
 
 const initialState: LongBreakProps = {
-  longBreak: "15:00",
+  longBreak: "15",
 };
 
 const LongBreakSlice = createSlice({

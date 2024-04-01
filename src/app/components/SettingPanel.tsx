@@ -11,6 +11,15 @@ export default function SettingPanel() {
   const openSetting = useSelector(
     (store: RootState) => store.openSetting.openSetting
   );
+  const pomodoroTimer = useSelector(
+    (store: RootState) => store.pomodoroTimer.pomodoroTimer
+  );
+  const shortBreak = useSelector(
+    (store: RootState) => store.shortBreak.shortBreak
+  );
+  const longBreak = useSelector(
+    (store: RootState) => store.longBreak.longBreak
+  );
 
   return (
     <div
@@ -51,7 +60,9 @@ export default function SettingPanel() {
                 pomodoro
               </h3>
               <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-                <h3 className="text-sm text-semi-blu font-bold">25</h3>
+                <h3 className="text-sm text-semi-blu font-bold">
+                  {pomodoroTimer}
+                </h3>
                 <div className="flex flex-col gap-2 cursor-pointer">
                   <Image src={upArrow} alt="up arrow" />
                   <Image src={downArrow} alt="down arrow" />
@@ -64,7 +75,9 @@ export default function SettingPanel() {
                 short break
               </h3>
               <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-                <h3 className="text-sm text-semi-blu font-bold">25</h3>
+                <h3 className="text-sm text-semi-blu font-bold">
+                  {shortBreak}
+                </h3>
                 <div className="flex flex-col gap-2 cursor-pointer">
                   <Image src={upArrow} alt="up arrow" />
                   <Image src={downArrow} alt="down arrow" />
@@ -77,7 +90,7 @@ export default function SettingPanel() {
                 long break
               </h3>
               <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-                <h3 className="text-sm text-semi-blu font-bold">25</h3>
+                <h3 className="text-sm text-semi-blu font-bold">{longBreak}</h3>
                 <div className="flex flex-col gap-2 cursor-pointer">
                   <Image src={upArrow} alt="up arrow" />
                   <Image src={downArrow} alt="down arrow" />
