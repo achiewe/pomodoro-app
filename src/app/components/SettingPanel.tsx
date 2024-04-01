@@ -74,7 +74,15 @@ export default function SettingPanel() {
                       }
                     }}
                   />
-                  <Image src={downArrow} alt="down arrow" />
+                  <Image
+                    src={downArrow}
+                    onClick={() => {
+                      if (pomodoroTimer > 0) {
+                        dispatch(setPomodoroTimer(pomodoroTimer - 1));
+                      }
+                    }}
+                    alt="down arrow"
+                  />
                 </div>
               </div>
             </div>
