@@ -18,11 +18,13 @@ export default function NavBar() {
         }}
         className={`${
           panelOption === "pomodoro" ? "bg-[red]" : "bg-[#161932]"
-        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px]`}
+        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
       >
         <h3
           className={`text-[12px] leading-[17.77px] font-bold ${
-            panelOption === "pomodoro" ? "text-[#1E213F]" : "text-[#D7E0FF]"
+            panelOption === "pomodoro"
+              ? "text-[#1E213F]"
+              : "text-[#D7E0FF] hover:text-[#f6f7fc]"
           }`}
         >
           pomodoro
@@ -31,14 +33,16 @@ export default function NavBar() {
       <div
         className={`${
           panelOption === "short break" ? "bg-[red]" : "bg-[#161932]"
-        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px]`}
+        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
         onClick={() => {
           dispatch(setPanelOption("short break"));
         }}
       >
         <h3
           className={`text-[12px] leading-[17.77px] font-bold ${
-            panelOption === "short break" ? "text-[#1E213F]" : "text-[#D7E0FF]"
+            panelOption === "short break"
+              ? "text-[#1E213F]"
+              : "text-[#D7E0FF] hover:text-[#f6f7fc]"
           }`}
         >
           short break
@@ -47,14 +51,16 @@ export default function NavBar() {
       <div
         className={`${
           panelOption === "long break" ? "bg-[red]" : "bg-[#161932]"
-        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px]`}
+        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
         onClick={() => {
           dispatch(setPanelOption("long break"));
         }}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold ${
-            panelOption === "long break" ? "text-[#1E213F]" : "text-[#D7E0FF]"
+          className={`text-[12px] leading-[17.77px] font-bold hover:text-[#f6f7fc] ${
+            panelOption === "long break"
+              ? "text-[#1E213F]"
+              : "text-[#D7E0FF] hover:text-[#f6f7fc]"
           }`}
         >
           long break

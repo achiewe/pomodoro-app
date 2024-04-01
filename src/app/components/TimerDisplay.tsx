@@ -76,7 +76,7 @@ export default function TimerDisplay() {
             ? longBreak
             : ""}
         </h1>
-        <button className="tracking-[13.13px] text-[#D7E0FF] text-[14px] leading-[20.73px] font-bold">
+        <button className="tracking-[13.13px] text-[#D7E0FF] text-[14px] cursor-pointer hover:text-[#F87070] leading-[20.73px] font-bold">
           PAUSE
         </button>
       </div>
