@@ -7,6 +7,7 @@ import LongBreakSlice, { LongBreakProps } from "./features/LongBreakSlice";
 import ColorSettingSlice, {
   ColorContProps,
 } from "./features/ColorSettingSlice";
+import FontSettingSlice, { FontProps } from "./features/FontSettingSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     shortBreak: ShortBreakSlice,
     longBreak: LongBreakSlice,
     contentColor: ColorSettingSlice,
+    fontContent: FontSettingSlice,
   },
 });
 
@@ -26,6 +28,7 @@ export type RootState = {
   shortBreak: ShortBreakProps;
   longBreak: LongBreakProps;
   contentColor: ColorContProps;
+  fontContent: FontProps;
 };
 
 export default store;
