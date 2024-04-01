@@ -15,7 +15,7 @@ const store = configureStore({
     pomodoroTimer: PomodoroSlice,
     shortBreak: ShortBreakSlice,
     longBreak: LongBreakSlice,
-    ContentColor: ColorSettingSlice,
+    contentColor: ColorSettingSlice,
   },
 });
 
@@ -25,7 +25,7 @@ export type RootState = {
   pomodoroTimer: PomodoroProps;
   shortBreak: ShortBreakProps;
   longBreak: LongBreakProps;
-  ContentColor: ColorContProps;
+  contentColor: ColorContProps;
 };
 
 export default store;

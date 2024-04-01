@@ -1,19 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface ColorContProps {
-  ContentColor: string;
+  contentColor: string;
 }
 
 const initialState: ColorContProps = {
-  ContentColor: "red",
+  contentColor: "red",
 };
 
 const ColorSettingSlice = createSlice({
-  name: "ContentColor",
+  name: "contentColor",
   initialState,
   reducers: {
     setContentColor: (state, action: PayloadAction<string>) => {
-      state.ContentColor = action.payload;
+      state.contentColor = action.payload;
     },
   },
 });
