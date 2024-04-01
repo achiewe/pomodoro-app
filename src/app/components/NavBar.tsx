@@ -14,7 +14,7 @@ export default function NavBar() {
   );
 
   return (
-    <div className="w-[327px] flex flex-row items-center gap-[10px] rounded-[25px] bg-[#161932] p-[5px]">
+    <div className="w-[327px] flex flex-row items-center gap-[10px] rounded-[25px] bg-[#161932] p-[5px] md:w-[373px]">
       <div
         onClick={() => {
           dispatch(setPanelOption("pomodoro"));
@@ -27,10 +27,10 @@ export default function NavBar() {
             : panelOption === "pomodoro" && contentColor === "purple"
             ? "bg-[#D881F8]"
             : "bg-[#161932]"
-        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
+        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer md:w-[120px]`}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 ${
+          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 md:text-[14px] ${
             panelOption === "pomodoro"
               ? "text-[#1E213F]"
               : "text-[#D7E0FF] opacity-50"
@@ -49,13 +49,13 @@ export default function NavBar() {
             ? "bg-[#D881F8]"
             : "bg-[#161932]"
         }
-        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
+        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer  md:w-[120px]`}
         onClick={() => {
           dispatch(setPanelOption("short break"));
         }}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 ${
+          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 md:text-[14px] ${
             panelOption === "short break"
               ? "text-[#1E213F]"
               : "text-[#D7E0FF] opacity-50"
@@ -73,13 +73,13 @@ export default function NavBar() {
             : panelOption === "long break" && contentColor === "purple"
             ? "bg-[#D881F8]"
             : "bg-[#161932]"
-        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
+        } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer md:w-[120px]`}
         onClick={() => {
           dispatch(setPanelOption("long break"));
         }}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 ${
+          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 md:text-[14px] ${
             panelOption === "long break"
               ? "text-[#1E213F]"
               : "text-[#D7E0FF] opacity-50"

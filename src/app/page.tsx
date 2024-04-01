@@ -6,7 +6,7 @@ import TimerDisplay from "./components/TimerDisplay";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full flex flex-col justify-start items-center bg-[#1E213F] p-[30px] relative">
+    <div className="min-h-screen w-full flex flex-col justify-start items-center pt-[30px] bg-[#1E213F] relative md:pt-[50px]">
       <Header />
       <NavBar />
       <TimerDisplay />
