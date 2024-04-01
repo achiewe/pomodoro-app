@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOpenSetting } from "../redux/features/OpenSettingSlice";
 import { RootState } from "../redux/store";
 import { setPomodoroTimer } from "../redux/features/PomodoroSlice";
+import { setShortBreak } from "../redux/features/ShortBreakSlice";
 
 export default function SettingPanel() {
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ export default function SettingPanel() {
                   <Image
                     src={downArrow}
                     onClick={() => {
-                      if (pomodoroTimer > 0) {
+                      if (pomodoroTimer > 1) {
                         dispatch(setPomodoroTimer(pomodoroTimer - 1));
                       }
                     }}
@@ -96,8 +97,24 @@ export default function SettingPanel() {
                   {shortBreak}
                 </h3>
                 <div className="flex flex-col gap-2 cursor-pointer">
-                  <Image src={upArrow} alt="up arrow" />
-                  <Image src={downArrow} alt="down arrow" />
+                  <Image
+                    src={upArrow}
+                    alt="up arrow"
+                    onClick={() => {
+                      if (shortBreak < 20) {
+                        dispatch(setShortBreak(shortBreak + 1));
+                      }
+                    }}
+                  />
+                  <Image
+                    src={downArrow}
+                    alt="down arrow"
+                    onClick={() => {
+                      if (shortBreak > 1) {
+                        dispatch(setShortBreak(shortBreak - 1));
+                      }
+                    }}
+                  />
                 </div>
               </div>
             </div>
