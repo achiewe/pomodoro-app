@@ -117,6 +117,11 @@ export default function SettingPanel() {
           </div>
         </div>
       </div>
+      <button
+        className={`-mt-[26px] border-none px-12 py-4 text-xs md:text-base text-[#FFFFFF] font-bold bg-[#F87070] rounded-[26.5px]`}
+      >
+        Return
+      </button>
     </div>
   );
 }
