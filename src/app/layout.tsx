@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Kumbh_Sans, Roboto_Slab, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "./redux/provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const Kumbh = Kumbh_Sans({ subsets: ["latin"], weight: ["400", "700"] });
+const Roboto = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
+const SpaceMono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: "pomodoro app",
@@ -17,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={(Kumbh.className, Roboto.className, SpaceMono.className)}
+      >
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>

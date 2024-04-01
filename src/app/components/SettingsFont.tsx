@@ -5,13 +5,13 @@ export default function SettingsFont() {
         FONT
       </h3>
       <div className="flex items-center gap-4 mt-4">
-        <button className="w-10 h-10 rounded-full text-base font-base flex items-center justify-center bg-[#EFF1FA] kumbh">
+        <button className="w-10 h-10 rounded-full text-base font-Kumbh flex items-center justify-center bg-[#EFF1FA]">
           Aa
         </button>
-        <button className="w-10 h-10 rounded-full text-base font-base flex items-center justify-center bg-[#EFF1FA] kumbh">
+        <button className="w-10 h-10 rounded-full text-base font-Roboto flex items-center justify-center bg-[#EFF1FA]">
           Aa
         </button>
-        <button className="w-10 h-10 rounded-full text-base font-base flex items-center justify-center bg-[#EFF1FA] kumbh">
+        <button className="w-10 h-10 rounded-full text-base font-SpaceMono flex items-center justify-center bg-[#EFF1FA]">
           Aa
         </button>
       </div>

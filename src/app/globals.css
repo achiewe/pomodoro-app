@@ -3,10 +3,22 @@
 @tailwind utilities;
 
 * {
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: "Kumbh Sans", "Space Mono", "Roboto Slab";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.font-Kumbh {
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.font-Roboto {
+  font-family: "Roboto Slab", serif;
+}
+
+.font-SpaceMono {
+  font-family: "Space Mono", monospace;
 }
 
 body {
