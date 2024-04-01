@@ -8,13 +8,15 @@ import { RootState } from "../redux/store";
 
 export default function SettingPanel() {
   const dispatch = useDispatch();
-  const openSetting = useSelector((store: RootState) => store.openSetting);
+  const openSetting = useSelector(
+    (store: RootState) => store.openSetting.openSetting
+  );
   console.log(openSetting);
 
   return (
     <div
       className={`w-screen h-screen absolute top-0 left-0 ${
-        openSetting ? "hidden" : "flex"
+        openSetting ? "flex" : "hidden"
       } flex-col px-[15px] bg-[#0a0c1c80] md:px-0 justify-center items-center`}
     >
       <div className="pt-9 pb-14 w-full max-w-[540px] bg-[#FFFFFF] rounded-3xl">
