@@ -11,7 +11,6 @@ export default function SettingPanel() {
   const openSetting = useSelector(
     (store: RootState) => store.openSetting.openSetting
   );
-  console.log(openSetting);
 
   return (
     <div
