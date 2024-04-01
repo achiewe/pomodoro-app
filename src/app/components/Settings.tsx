@@ -1,7 +1,11 @@
+"use client";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+
 export default function Settings() {
-  // const dispatch = useDispatch();
-  // const openSetting = useSelector((store: RootState) => store.openSetting);
-  // console.log(openSetting);
+  const dispatch = useDispatch();
+  const openSetting = useSelector((store: RootState) => store.openSetting);
+  console.log(openSetting);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
