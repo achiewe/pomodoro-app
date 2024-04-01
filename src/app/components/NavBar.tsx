@@ -21,10 +21,10 @@ export default function NavBar() {
         } w-[106px] flex justify-center items-center h-[48px] rounded-[25px] cursor-pointer`}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold ${
+          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 ${
             panelOption === "pomodoro"
               ? "text-[#1E213F]"
-              : "text-[#D7E0FF] hover:text-[#f6f7fc]"
+              : "text-[#D7E0FF] opacity-50"
           }`}
         >
           pomodoro
@@ -39,10 +39,10 @@ export default function NavBar() {
         }}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold ${
+          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 ${
             panelOption === "short break"
               ? "text-[#1E213F]"
-              : "text-[#D7E0FF] hover:text-[#f6f7fc]"
+              : "text-[#D7E0FF] opacity-50"
           }`}
         >
           short break
@@ -57,10 +57,10 @@ export default function NavBar() {
         }}
       >
         <h3
-          className={`text-[12px] leading-[17.77px] font-bold hover:text-[#f6f7fc] ${
+          className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 ${
             panelOption === "long break"
               ? "text-[#1E213F]"
-              : "text-[#D7E0FF] hover:text-[#f6f7fc]"
+              : "text-[#D7E0FF] opacity-50"
           }`}
         >
           long break
