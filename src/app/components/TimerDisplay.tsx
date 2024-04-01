@@ -8,6 +8,9 @@ export default function TimerDisplay() {
   const panelOption = useSelector(
     (store: RootState) => store.panelOption.panelOption
   );
+  const pomodoroTimer = useSelector(
+    (store: RootState) => store.pomodoroTimer.pomodoroTimer
+  );
   return (
     <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] mt-[50px] mb-[100px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
       <audio className="hidden"></audio>
@@ -59,7 +62,7 @@ export default function TimerDisplay() {
       </svg>
       <div className="flex flex-col w-full justify-center items-center gap-[5px]">
         <h1 className="text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF]">
-          {}
+          {panelOption === "pomodoro" ? pomodoroTimer : "koko"}
         </h1>
         <button className="tracking-[13.13px] text-[#D7E0FF] text-[14px] leading-[20.73px] font-bold">
           PAUSE
