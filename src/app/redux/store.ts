@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import OpenSettingSlice, { SettingProps } from "./OpenSettingSlice";
+import OpenSettingSlice, { SettingProps } from "./features/OpenSettingSlice";
 
 const store = configureStore({
   reducer: {
