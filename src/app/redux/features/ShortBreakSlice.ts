@@ -5,7 +5,7 @@ export interface ShortBreakProps {
 }
 
 const initialState: ShortBreakProps = {
-  shortBreak: "25:00",
+  shortBreak: "5:00",
 };
 
 const ShortBreakSlice = createSlice({
