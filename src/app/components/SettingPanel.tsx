@@ -7,6 +7,7 @@ import { setOpenSetting } from "../redux/features/OpenSettingSlice";
 import { RootState } from "../redux/store";
 import { setPomodoroTimer } from "../redux/features/PomodoroSlice";
 import { setShortBreak } from "../redux/features/ShortBreakSlice";
+import { setLongBreak } from "../redux/features/LongBreakSlice";
 
 export default function SettingPanel() {
   const dispatch = useDispatch();
@@ -110,7 +111,7 @@ export default function SettingPanel() {
                     src={downArrow}
                     alt="down arrow"
                     onClick={() => {
-                      if (shortBreak > 1) {
+                      if (shortBreak > 5) {
                         dispatch(setShortBreak(shortBreak - 1));
                       }
                     }}
@@ -126,8 +127,24 @@ export default function SettingPanel() {
               <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
                 <h3 className="text-sm text-semi-blu font-bold">{longBreak}</h3>
                 <div className="flex flex-col gap-2 cursor-pointer">
-                  <Image src={upArrow} alt="up arrow" />
-                  <Image src={downArrow} alt="down arrow" />
+                  <Image
+                    src={upArrow}
+                    alt="up arrow"
+                    onClick={() => {
+                      if (longBreak < 30) {
+                        dispatch(setLongBreak(longBreak + 1));
+                      }
+                    }}
+                  />
+                  <Image
+                    src={downArrow}
+                    alt="down arrow"
+                    onClick={() => {
+                      if (longBreak > 15) {
+                        dispatch(setLongBreak(longBreak - 1));
+                      }
+                    }}
+                  />
                 </div>
               </div>
             </div>
