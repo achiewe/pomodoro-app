@@ -1,7 +1,7 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenSetting } from "../feature/OpenSettingSlice";
-import { RootState } from "../feature/store";
+import { setOpenSetting } from "../features/OpenSettingSlice";
+import { RootState } from "../features/store";
 
 export default function Settings() {
   const dispatch = useDispatch();
