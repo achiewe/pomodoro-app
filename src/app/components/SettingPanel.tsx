@@ -1,8 +1,13 @@
+"use client";
 import upArrow from "../../../public/assets/icon-arrow-up.svg";
 import downArrow from "../../../public/assets/icon-arrow-down.svg";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { setOpenSetting } from "../redux/features/OpenSettingSlice";
 
 export default function SettingPanel() {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-screen h-screen absolute top-0 left-0 flex flex-col px-[15px] bg-[#0a0c1c80] md:px-0 justify-center items-center">
       <div className="pt-9 pb-14 w-full max-w-[540px] bg-[#FFFFFF] rounded-3xl">
@@ -10,7 +15,14 @@ export default function SettingPanel() {
           <h3 className="text-[20px] text-[#161932] font-bold leading-[24.8px]">
             Settings
           </h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            onClick={() => {
+              dispatch(setOpenSetting());
+            }}
+          >
             <path
               fill="#1E213F"
               className="hover:opacity-100"

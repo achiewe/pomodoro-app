@@ -1,20 +1,14 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { setOpenSetting } from "../redux/features/OpenSettingSlice";
 
 export default function Settings() {
   const dispatch = useDispatch();
   const openSetting = useSelector((store: RootState) => store.openSetting);
   console.log(openSetting);
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="28"
-      height="28"
-      // onClick={() => {
-      //   dispatch(setOpenSetting());
-      // }}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
       <path
         fill="#D7E0FF"
         className="hover:opacity-100 cursor-pointer"
