@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 export default function TimerDisplay() {
-  const dispatch = useDispatch();
   const panelOption = useSelector(
     (store: RootState) => store.panelOption.panelOption
   );
@@ -16,6 +15,9 @@ export default function TimerDisplay() {
   );
   const longBreak = useSelector(
     (store: RootState) => store.longBreak.longBreak
+  );
+  const contentColor = useSelector(
+    (store: RootState) => store.contentColor.contentColor
   );
   return (
     <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] mt-[50px] mb-[100px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
@@ -31,7 +33,15 @@ export default function TimerDisplay() {
           cy="133.9025px"
           r="120px"
           fill="transparent"
-          stroke="red"
+          stroke={
+            contentColor === "red"
+              ? "#F87070"
+              : contentColor === "green"
+              ? "#70F3F8"
+              : contentColor === "purple"
+              ? "#D881F8"
+              : ""
+          }
           strokeWidth="10px"
           strokeDasharray="753px"
         ></circle>
