@@ -25,7 +25,9 @@ export default function SettingsFont() {
           Aa
         </button>
         <button
-          className="w-10 h-10 rounded-full text-base font-Roboto flex items-center justify-center bg-[#EFF1FA]"
+          className={`w-10 h-10 rounded-full text-base font-Roboto flex items-center justify-center ${
+            fontContent === "Roboto" ? "bg-[#161932]" : "bg-[#EFF1FA]"
+          }`}
           onClick={() => {
             dispatch(setFontContent("Roboto"));
           }}
