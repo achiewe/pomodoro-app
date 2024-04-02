@@ -12,6 +12,9 @@ export default function NavBar() {
   const contentColor = useSelector(
     (store: RootState) => store.contentColor.contentColor
   );
+  const fontContent = useSelector(
+    (store: RootState) => store.fontContent.fontContent
+  );
 
   return (
     <div className="w-[327px] flex flex-row items-center gap-[10px] rounded-[25px] bg-[#161932] p-[5px] md:w-[373px]">
@@ -31,6 +34,14 @@ export default function NavBar() {
       >
         <h3
           className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 md:text-[14px] ${
+            fontContent === "kumbh"
+              ? "font-Kumbh"
+              : fontContent === "Roboto"
+              ? "font-Roboto"
+              : fontContent === "SpaceMono"
+              ? "font-SpaceMono"
+              : ""
+          } ${
             panelOption === "pomodoro"
               ? "text-[#1E213F]"
               : "text-[#D7E0FF] opacity-50"
@@ -56,6 +67,14 @@ export default function NavBar() {
       >
         <h3
           className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 md:text-[14px] ${
+            fontContent === "kumbh"
+              ? "font-Kumbh"
+              : fontContent === "Roboto"
+              ? "font-Roboto"
+              : fontContent === "SpaceMono"
+              ? "font-SpaceMono"
+              : ""
+          } ${
             panelOption === "short break"
               ? "text-[#1E213F]"
               : "text-[#D7E0FF] opacity-50"
@@ -80,6 +99,14 @@ export default function NavBar() {
       >
         <h3
           className={`text-[12px] leading-[17.77px] font-bold hover:opacity-100 md:text-[14px] ${
+            fontContent === "kumbh"
+              ? "font-Kumbh"
+              : fontContent === "Roboto"
+              ? "font-Roboto"
+              : fontContent === "SpaceMono"
+              ? "font-SpaceMono"
+              : ""
+          } ${
             panelOption === "long break"
               ? "text-[#1E213F]"
               : "text-[#D7E0FF] opacity-50"
