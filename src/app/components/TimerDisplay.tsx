@@ -117,7 +117,7 @@ export default function TimerDisplay() {
               : ""
           }`}
         >
-          PAUSE
+          START
         </button>
       </div>
     </div>
