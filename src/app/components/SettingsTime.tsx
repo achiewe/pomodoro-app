@@ -91,7 +91,19 @@ export default function SettingsTime() {
           short break
         </h3>
         <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-          <h3 className="text-sm text-semi-blu font-bold">{shortBreak}</h3>
+          <h3
+            className={`text-sm text-semi-blu font-bold ${
+              fontContent === "kumbh"
+                ? "font-Kumbh"
+                : fontContent === "Roboto"
+                ? "font-Roboto"
+                : fontContent === "SpaceMono"
+                ? "font-SpaceMono"
+                : ""
+            }`}
+          >
+            {shortBreak}
+          </h3>
           <div className="flex flex-col gap-2 cursor-pointer">
             <Image
               src={upArrow}
@@ -116,11 +128,33 @@ export default function SettingsTime() {
       </div>
 
       <div className="flex md:flex-col items-center md:items-start justify-between gap-20 md:gap-2">
-        <h3 className="text-xs md:text-sm text-semi-blu font-bold opacity-40">
+        <h3
+          className={`text-xs md:text-sm text-semi-blu font-bold opacity-40 ${
+            fontContent === "kumbh"
+              ? "font-Kumbh"
+              : fontContent === "Roboto"
+              ? "font-Roboto"
+              : fontContent === "SpaceMono"
+              ? "font-SpaceMono"
+              : ""
+          }`}
+        >
           long break
         </h3>
         <div className="w-[140px] h-12 flex justify-between items-center px-4 rounded-[10px] bg-[#EFF1FA]">
-          <h3 className="text-sm text-semi-blu font-bold">{longBreak}</h3>
+          <h3
+            className={`text-sm text-semi-blu font-bold ${
+              fontContent === "kumbh"
+                ? "font-Kumbh"
+                : fontContent === "Roboto"
+                ? "font-Roboto"
+                : fontContent === "SpaceMono"
+                ? "font-SpaceMono"
+                : ""
+            }`}
+          >
+            {longBreak}
+          </h3>
           <div className="flex flex-col gap-2 cursor-pointer">
             <Image
               src={upArrow}
