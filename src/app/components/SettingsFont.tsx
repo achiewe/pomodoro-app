@@ -11,7 +11,15 @@ export default function SettingsFont() {
   return (
     <div className="flex flex-col md:flex-row md:justify-between items-center">
       <h3
-        className={`mt-6 text-[11px] md:text-sm text-[#161932] font-bold tracking-[5px] text-center`}
+        className={`mt-6 text-[11px] md:text-sm text-[#161932] font-bold tracking-[5px] text-center ${
+          fontContent === "kumbh"
+            ? "font-Kumbh"
+            : fontContent === "Roboto"
+            ? "font-Roboto"
+            : fontContent === "SpaceMono"
+            ? "font-SpaceMono"
+            : ""
+        }`}
       >
         FONT
       </h3>
