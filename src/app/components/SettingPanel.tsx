@@ -24,7 +24,17 @@ export default function SettingPanel() {
     >
       <div className="pt-9 pb-14 w-full max-w-[540px] bg-[#FFFFFF] rounded-3xl">
         <div className="px-6 md:px-10 flex justify-between items-center">
-          <h3 className="text-[20px] text-[#161932] font-bold leading-[24.8px]">
+          <h3
+            className={`text-[20px] text-[#161932] font-bold leading-[24.8px] ${
+              fontContent === "kumbh"
+                ? "font-Kumbh"
+                : fontContent === "Roboto"
+                ? "font-Roboto"
+                : fontContent === "SpaceMono"
+                ? "font-SpaceMono"
+                : ""
+            }`}
+          >
             Settings
           </h3>
           <svg
@@ -46,7 +56,17 @@ export default function SettingPanel() {
         </div>
         <div className="w-full h-[1px] bg-[#E3E1E1] mt-6 md:mt-8"></div>
         <div className="px-6 md:px-10">
-          <h3 className="mt-6 text-xs md:text-sm text-dark-blu font-bold tracking-[5px] text-center">
+          <h3
+            className={`mt-6 text-xs md:text-sm text-dark-blu font-bold tracking-[5px] text-center ${
+              fontContent === "kumbh"
+                ? "font-Kumbh"
+                : fontContent === "Roboto"
+                ? "font-Roboto"
+                : fontContent === "SpaceMono"
+                ? "font-SpaceMono"
+                : ""
+            }`}
+          >
             TIME (MINUTES)
           </h3>
           <SettingsTime />
@@ -57,7 +77,15 @@ export default function SettingPanel() {
         </div>
       </div>
       <button
-        className={`-mt-[26px] border-none px-12 py-4 text-xs md:text-base text-[#FFFFFF] font-bold bg-[#F87070] rounded-[26.5px]`}
+        className={`-mt-[26px] border-none px-12 py-4 text-xs md:text-base text-[#FFFFFF] font-bold bg-[#F87070] rounded-[26.5px] ${
+          fontContent === "kumbh"
+            ? "font-Kumbh"
+            : fontContent === "Roboto"
+            ? "font-Roboto"
+            : fontContent === "SpaceMono"
+            ? "font-SpaceMono"
+            : ""
+        }`}
       >
         Return
       </button>
