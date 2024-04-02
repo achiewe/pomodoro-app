@@ -9,9 +9,22 @@ export default function SettingsColor() {
   const contentColor = useSelector(
     (store: RootState) => store.contentColor.contentColor
   );
+  const fontContent = useSelector(
+    (store: RootState) => store.fontContent.fontContent
+  );
   return (
     <div className="flex flex-col md:flex-row md:justify-between items-center md:mt-6">
-      <h3 className="mt-6 md:mt-0 text-[11px] md:text-sm text-dark-blu font-bold tracking-[5px] text-center">
+      <h3
+        className={`mt-6 md:mt-0 text-[11px] md:text-sm text-dark-blu font-bold tracking-[5px] text-center ${
+          fontContent === "kumbh"
+            ? "font-Kumbh"
+            : fontContent === "Roboto"
+            ? "font-Roboto"
+            : fontContent === "SpaceMono"
+            ? "font-SpaceMono"
+            : ""
+        }`}
+      >
         COLOR
       </h3>
       <div className="flex items-center gap-4 mt-4 md:mt-0">
