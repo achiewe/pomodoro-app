@@ -1,6 +1,5 @@
 "use client";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 export default function TimerDisplay() {
@@ -18,6 +17,9 @@ export default function TimerDisplay() {
   );
   const contentColor = useSelector(
     (store: RootState) => store.contentColor.contentColor
+  );
+  const fontContent = useSelector(
+    (store: RootState) => store.fontContent.fontContent
   );
   return (
     <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] mt-[50px] mb-[100px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
@@ -85,7 +87,17 @@ export default function TimerDisplay() {
         ></circle>
       </svg>
       <div className="flex flex-col w-full justify-center items-center gap-[5px]">
-        <h1 className="text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF]">
+        <h1
+          className={`text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF] ${
+            fontContent === "kumbh"
+              ? "font-Kumbh"
+              : fontContent === "Roboto"
+              ? "font-Roboto"
+              : fontContent === "SpaceMono"
+              ? "font-SpaceMono"
+              : ""
+          }`}
+        >
           {panelOption === "pomodoro"
             ? pomodoroTimer
             : panelOption === "short break"
@@ -94,7 +106,17 @@ export default function TimerDisplay() {
             ? longBreak
             : ""}
         </h1>
-        <button className="tracking-[13.13px] text-[#D7E0FF] text-[14px] cursor-pointer hover:text-[#F87070] leading-[20.73px] font-bold">
+        <button
+          className={`tracking-[13.13px] text-[#D7E0FF] text-[14px] cursor-pointer hover:text-[#F87070] leading-[20.73px] font-bold ${
+            fontContent === "kumbh"
+              ? "font-Kumbh"
+              : fontContent === "Roboto"
+              ? "font-Roboto"
+              : fontContent === "SpaceMono"
+              ? "font-SpaceMono"
+              : ""
+          }`}
+        >
           PAUSE
         </button>
       </div>
