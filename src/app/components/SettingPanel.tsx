@@ -12,6 +12,10 @@ export default function SettingPanel() {
     (store: RootState) => store.openSetting.openSetting
   );
 
+  const fontContent = useSelector(
+    (store: RootState) => store.fontContent.fontContent
+  );
+
   return (
     <div
       className={`w-screen h-screen absolute top-0 left-0 ${

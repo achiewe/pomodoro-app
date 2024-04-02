@@ -10,13 +10,17 @@ export default function SettingsFont() {
   );
   return (
     <div className="flex flex-col md:flex-row md:justify-between items-center">
-      <h3 className="mt-6 text-[11px] md:text-sm text-[#161932] font-bold tracking-[5px] text-center">
+      <h3
+        className={`mt-6 text-[11px] md:text-sm text-[#161932] font-bold tracking-[5px] text-center`}
+      >
         FONT
       </h3>
       <div className="flex items-center gap-4 mt-4">
         <button
           className={`w-10 h-10 rounded-full text-base font-Kumbh flex items-center justify-center ${
-            fontContent === "kumbh" ? "bg-[#161932]" : "bg-[#EFF1FA]"
+            fontContent === "kumbh"
+              ? "bg-[#161932] text-[#FFFFFF]"
+              : "bg-[#EFF1FA] text-[#1E213F]"
           }`}
           onClick={() => {
             dispatch(setFontContent("kumbh"));
@@ -25,8 +29,10 @@ export default function SettingsFont() {
           Aa
         </button>
         <button
-          className={`w-10 h-10 rounded-full text-base font-Roboto flex items-center justify-center ${
-            fontContent === "Roboto" ? "bg-[#161932]" : "bg-[#EFF1FA]"
+          className={`w-10 h-10 rounded-full text-base font-Roboto flex items-center justify-center  ${
+            fontContent === "Roboto"
+              ? "bg-[#161932] text-[#FFFFFF]"
+              : "bg-[#EFF1FA] text-[#1E213F]"
           }`}
           onClick={() => {
             dispatch(setFontContent("Roboto"));
@@ -36,7 +42,9 @@ export default function SettingsFont() {
         </button>
         <button
           className={`w-10 h-10 rounded-full text-base font-SpaceMono flex items-center justify-center ${
-            fontContent === "SpaceMono" ? "bg-[#161932]" : "bg-[#EFF1FA]"
+            fontContent === "SpaceMono"
+              ? "bg-[#161932] text-[#FFFFFF]"
+              : "bg-[#EFF1FA] text-[#1E213F]"
           }`}
           onClick={() => {
             dispatch(setFontContent("SpaceMono"));
