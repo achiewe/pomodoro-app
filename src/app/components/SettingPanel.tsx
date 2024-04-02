@@ -11,15 +11,6 @@ export default function SettingPanel() {
   const openSetting = useSelector(
     (store: RootState) => store.openSetting.openSetting
   );
-  const pomodoroTimer = useSelector(
-    (store: RootState) => store.pomodoroTimer.pomodoroTimer
-  );
-  const shortBreak = useSelector(
-    (store: RootState) => store.shortBreak.shortBreak
-  );
-  const longBreak = useSelector(
-    (store: RootState) => store.longBreak.longBreak
-  );
 
   return (
     <div
