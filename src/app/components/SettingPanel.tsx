@@ -18,7 +18,7 @@ export default function SettingPanel() {
 
   return (
     <div
-      className={`w-screen h-screen absolute top-0 left-0 ${
+      className={`w-screen h-screen absolute top-0 left-0 z-20 ${
         openSetting ? "flex" : "hidden"
       } flex-col px-[15px] bg-[#0a0c1c80] md:px-0 justify-center items-center`}
     >
