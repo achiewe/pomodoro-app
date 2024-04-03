@@ -23,9 +23,14 @@ export default function TimerDisplay() {
     (store: RootState) => store.fontContent.fontContent
   );
 
+  const [circle1Dashoffset, setCircle1Dashoffset] = useState(0);
+  const [circle2Dashoffset, setCircle2Dashoffset] = useState(1161);
   const [timer, setTimer] = useState(getInitialTimerValue(panelOption));
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  console.log(circle1Dashoffset, "circle1Dashoffset");
+  console.log(circle2Dashoffset, "circle2Dashoffset");
 
   useEffect(() => {
     if (isRunning) {
@@ -45,6 +50,45 @@ export default function TimerDisplay() {
     const formattedMinutes = String(minutes).padStart(2, "0");
     return `${formattedMinutes}:00`;
   }
+
+  // Define the calculateDashoffset functions
+  const calculateDashoffset = (sessionTime: number, currentTime: number) => {
+    return 753 - (753 * (sessionTime * 60 - currentTime)) / (sessionTime * 60);
+  };
+
+  const calculateDashoffsetTablet = (
+    sessionTime: number,
+    currentTime: number
+  ) => {
+    return (1161 * (sessionTime * 60 - currentTime)) / (sessionTime * 60);
+  };
+
+  useEffect(() => {
+    const sessionTime =
+      panelOption === "pomodoro"
+        ? pomodoroTimer
+        : panelOption === "short break"
+        ? shortBreak
+        : panelOption === "long break"
+        ? longBreak
+        : 0;
+
+    // Example: Replace currentTime with the actual current time
+    const currentTime = sessionTime;
+
+    // Calculate dashoffset values based on current time and session time
+    const circle1DashoffsetValue = calculateDashoffset(
+      sessionTime,
+      currentTime
+    );
+    const circle2DashoffsetValue = calculateDashoffsetTablet(
+      sessionTime,
+      currentTime
+    );
+    // Set the state variables with calculated values
+    setCircle1Dashoffset(circle1DashoffsetValue);
+    setCircle2Dashoffset(circle2DashoffsetValue);
+  }, [panelOption, pomodoroTimer, shortBreak, longBreak]);
 
   function getInitialTimerValue(option: string): string {
     switch (option) {
@@ -117,6 +161,7 @@ export default function TimerDisplay() {
           }
           strokeWidth="10px"
           strokeDasharray="753px"
+          strokeDashoffset={circle1Dashoffset}
         ></circle>
         <circle
           id="circle2"
@@ -126,6 +171,7 @@ export default function TimerDisplay() {
           fill="transparent"
         ></circle>
       </svg>
+
       <svg
         width="410px"
         height="410px"
@@ -148,6 +194,7 @@ export default function TimerDisplay() {
           }
           strokeWidth="20px"
           strokeDasharray="1161px"
+          strokeDashoffset={circle2Dashoffset}
         ></circle>
         <circle
           id="circle2"
