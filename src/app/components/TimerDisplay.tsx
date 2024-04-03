@@ -126,6 +126,7 @@ export default function TimerDisplay() {
       clearInterval(intervalRef.current!);
     };
   }, [panelOption, isRunning, pomodoroTimer, shortBreak, longBreak]);
+
   function getInitialTimerValue(option: string): string {
     switch (option) {
       case "pomodoro":
@@ -139,19 +140,35 @@ export default function TimerDisplay() {
     }
   }
 
+  const [remainingTime, setRemainingTime] = useState<number | null>(null);
+
   const startTimer = () => {
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
       setTimer((previousTime) => {
-        const [minutes, seconds] = previousTime.split(":").map(Number);
-        let totalSeconds = minutes * 60 + seconds - 1;
+        let totalSeconds;
+        if (remainingTime !== null) {
+          // If remaining time is stored, use it
+          totalSeconds = remainingTime;
+          setRemainingTime((prevTime) => {
+            if (prevTime !== null && prevTime > 0) return prevTime - 1;
+            else return null;
+          });
+        } else {
+          // If remaining time is not stored, calculate from displayed time
+          const [minutes, seconds] = previousTime.split(":").map(Number);
+          totalSeconds = minutes * 60 + seconds - 1;
+        }
+
         if (totalSeconds < 0) {
           clearInterval(intervalRef.current!);
           setIsRunning(false);
-          setCircle1Dashoffset(0); // Set circle1Dashoffset to 0
-          setCircle2Dashoffset(0); // Set circle2Dashoffset to 0
+          setCircle1Dashoffset(0);
+          setCircle2Dashoffset(0);
+          setTimer("00:00");
           return "00:00";
         }
+
         const newMinutes = Math.floor(totalSeconds / 60);
         const newSeconds = totalSeconds % 60;
         return `${String(newMinutes).padStart(2, "0")}:${String(
@@ -163,8 +180,21 @@ export default function TimerDisplay() {
 
   const stopTimer = () => {
     clearInterval(intervalRef.current!);
-    setIsRunning(false);
+    // Store remaining time when the timer is stopped
+    setRemainingTime(timerToSeconds(timer));
+    // Only set isRunning to false if the timer is currently running
+    if (panelOption) {
+      setIsRunning(false);
+    }
   };
+
+  // Helper function to convert timer format to seconds
+  const timerToSeconds = (time: string): number => {
+    const [minutes, seconds] = time.split(":").map(Number);
+    return minutes * 60 + seconds;
+  };
+
+  console.log(isRunning);
 
   const handleStartButtonClick = () => {
     if (!isRunning) {
