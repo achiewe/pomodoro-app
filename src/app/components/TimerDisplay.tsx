@@ -23,7 +23,7 @@ export default function TimerDisplay() {
     (store: RootState) => store.fontContent.fontContent
   );
 
-  const [circle1Dashoffset, setCircle1Dashoffset] = useState(0);
+  const [circle1Dashoffset, setCircle1Dashoffset] = useState(753);
   const [circle2Dashoffset, setCircle2Dashoffset] = useState(1161);
   const [timer, setTimer] = useState(getInitialTimerValue(panelOption));
   const [isRunning, setIsRunning] = useState(false);
@@ -51,18 +51,6 @@ export default function TimerDisplay() {
     return `${formattedMinutes}:00`;
   }
 
-  // Define the calculateDashoffset functions
-  const calculateDashoffset = (sessionTime: number, currentTime: number) => {
-    return 753 - (753 * (sessionTime * 60 - currentTime)) / (sessionTime * 60);
-  };
-
-  const calculateDashoffsetTablet = (
-    sessionTime: number,
-    currentTime: number
-  ) => {
-    return (1161 * (sessionTime * 60 - currentTime)) / (sessionTime * 60);
-  };
-
   useEffect(() => {
     const sessionTime =
       panelOption === "pomodoro"
@@ -73,23 +61,71 @@ export default function TimerDisplay() {
         ? longBreak
         : 0;
 
-    // Example: Replace currentTime with the actual current time
-    const currentTime = sessionTime;
+    const initialCircle1Dashoffset =
+      panelOption === "pomodoro"
+        ? 753
+        : panelOption === "short break"
+        ? 753 // Adjust this value according to your needs
+        : panelOption === "long break"
+        ? 753 // Adjust this value according to your needs
+        : 0;
 
-    // Calculate dashoffset values based on current time and session time
-    const circle1DashoffsetValue = calculateDashoffset(
-      sessionTime,
-      currentTime
-    );
-    const circle2DashoffsetValue = calculateDashoffsetTablet(
-      sessionTime,
-      currentTime
-    );
-    // Set the state variables with calculated values
-    setCircle1Dashoffset(circle1DashoffsetValue);
-    setCircle2Dashoffset(circle2DashoffsetValue);
-  }, [panelOption, pomodoroTimer, shortBreak, longBreak]);
+    const initialCircle2Dashoffset =
+      panelOption === "pomodoro"
+        ? 1161
+        : panelOption === "short break"
+        ? 1161 // Adjust this value according to your needs
+        : panelOption === "long break"
+        ? 1161 // Adjust this value according to your needs
+        : 0;
 
+    setCircle1Dashoffset(initialCircle1Dashoffset);
+    setCircle2Dashoffset(initialCircle2Dashoffset);
+
+    let currentTime = sessionTime * 60; // Convert session time to seconds
+
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
+        currentTime -= 1; // Decrease currentTime by 1 second
+
+        if (currentTime <= 0) {
+          clearInterval(intervalRef.current!);
+          setIsRunning(false);
+          currentTime = 0;
+          setCircle1Dashoffset(0); // Set circle1Dashoffset to 0 when timer reaches 00:00
+          setCircle2Dashoffset(0); // Set circle2Dashoffset to 0 when timer reaches 00:00
+          setTimer("00:00"); // Set timer to 00:00 when timer reaches 00:00
+          return;
+        }
+
+        // Calculate dashoffset values based on current time and session time
+        const circle1DashoffsetValue = Math.max(
+          0,
+          (753 * currentTime) / (sessionTime * 60) // Adjust this calculation to your needs
+        );
+        const circle2DashoffsetValue = Math.max(
+          0,
+          (1161 * currentTime) / (sessionTime * 60) // Adjust this calculation to your needs
+        );
+
+        // Format remaining time as MM:SS
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = currentTime % 60;
+        const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+          seconds
+        ).padStart(2, "0")}`;
+
+        // Set the state variables with calculated values
+        setCircle1Dashoffset(circle1DashoffsetValue);
+        setCircle2Dashoffset(circle2DashoffsetValue);
+        setTimer(formattedTime);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(intervalRef.current!);
+    };
+  }, [panelOption, isRunning, pomodoroTimer, shortBreak, longBreak]);
   function getInitialTimerValue(option: string): string {
     switch (option) {
       case "pomodoro":
@@ -112,6 +148,8 @@ export default function TimerDisplay() {
         if (totalSeconds < 0) {
           clearInterval(intervalRef.current!);
           setIsRunning(false);
+          setCircle1Dashoffset(0); // Set circle1Dashoffset to 0
+          setCircle2Dashoffset(0); // Set circle2Dashoffset to 0
           return "00:00";
         }
         const newMinutes = Math.floor(totalSeconds / 60);
