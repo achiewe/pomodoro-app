@@ -32,17 +32,19 @@ export default function TimerDisplay() {
   console.log(circle1Dashoffset, "circle1Dashoffset");
   console.log(circle2Dashoffset, "circle2Dashoffset");
 
-  // useEffect(() => {
-  //   if (!isRunning) {
-  //     setRemainingTime(null); // Reset remaining time when not running
-  //   }
-  // }, [isRunning]);
+  useEffect(() => {
+    if (isRunning) {
+      stopTimer();
+      setIsRunning(false);
+    }
+    setTimer(getInitialTimerValue(panelOption));
+  }, [panelOption, longBreak, shortBreak, pomodoroTimer]);
 
-  // useEffect(() => {
-  //   if (!isRunning) {
-  //     setTimer(getInitialTimerValue(panelOption));
-  //   }
-  // }, [panelOption, isRunning]);
+  useEffect(() => {
+    return () => {
+      clearInterval(intervalRef.current!);
+    };
+  }, []);
 
   function formatTime(minutes: number): string {
     const formattedMinutes = String(minutes).padStart(2, "0");
@@ -59,37 +61,61 @@ export default function TimerDisplay() {
         ? longBreak
         : 0;
 
-    let currentTime = sessionTime * 60;
+    const initialCircle1Dashoffset =
+      panelOption === "pomodoro"
+        ? 753
+        : panelOption === "short break"
+        ? 753 // Adjust this value according to your needs
+        : panelOption === "long break"
+        ? 753 // Adjust this value according to your needs
+        : 0;
+
+    const initialCircle2Dashoffset =
+      panelOption === "pomodoro"
+        ? 1161
+        : panelOption === "short break"
+        ? 1161 // Adjust this value according to your needs
+        : panelOption === "long break"
+        ? 1161 // Adjust this value according to your needs
+        : 0;
+
+    setCircle1Dashoffset(initialCircle1Dashoffset);
+    setCircle2Dashoffset(initialCircle2Dashoffset);
+
+    let currentTime = sessionTime * 60; // Convert session time to seconds
 
     if (isRunning) {
       intervalRef.current = setInterval(() => {
-        currentTime -= 1;
+        currentTime -= 1; // Decrease currentTime by 1 second
 
         if (currentTime <= 0) {
           clearInterval(intervalRef.current!);
           setIsRunning(false);
           currentTime = 0;
-          setCircle1Dashoffset(0);
-          setCircle2Dashoffset(0);
-          setTimer("00:00");
+          setCircle1Dashoffset(0); // Set circle1Dashoffset to 0 when timer reaches 00:00
+          setCircle2Dashoffset(0); // Set circle2Dashoffset to 0 when timer reaches 00:00
+          setTimer("00:00"); // Set timer to 00:00 when timer reaches 00:00
           return;
         }
 
+        // Calculate dashoffset values based on current time and session time
         const circle1DashoffsetValue = Math.max(
           0,
-          (753 * currentTime) / (sessionTime * 60)
+          (753 * currentTime) / (sessionTime * 60) // Adjust this calculation to your needs
         );
         const circle2DashoffsetValue = Math.max(
           0,
-          (1161 * currentTime) / (sessionTime * 60)
+          (1161 * currentTime) / (sessionTime * 60) // Adjust this calculation to your needs
         );
 
+        // Format remaining time as MM:SS
         const minutes = Math.floor(currentTime / 60);
         const seconds = currentTime % 60;
         const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
           seconds
         ).padStart(2, "0")}`;
 
+        // Set the state variables with calculated values
         setCircle1Dashoffset(circle1DashoffsetValue);
         setCircle2Dashoffset(circle2DashoffsetValue);
         setTimer(formattedTime);
@@ -99,7 +125,7 @@ export default function TimerDisplay() {
     return () => {
       clearInterval(intervalRef.current!);
     };
-  }, [panelOption, pomodoroTimer, shortBreak, longBreak]);
+  }, [panelOption, isRunning, pomodoroTimer, shortBreak, longBreak]);
 
   function getInitialTimerValue(option: string): string {
     switch (option) {
@@ -116,26 +142,20 @@ export default function TimerDisplay() {
 
   const [remainingTime, setRemainingTime] = useState<number | null>(null);
 
-  // Helper function to convert timer format to seconds
-  const timerToSeconds = (time: string): number => {
-    const [minutes, seconds] = time.split(":").map(Number);
-    return minutes * 60 + seconds;
-  };
-
-  console.log(isRunning);
-
   const startTimer = () => {
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
       setTimer((previousTime) => {
         let totalSeconds;
         if (remainingTime !== null) {
+          // If remaining time is stored, use it
           totalSeconds = remainingTime;
           setRemainingTime((prevTime) => {
             if (prevTime !== null && prevTime > 0) return prevTime - 1;
             else return null;
           });
         } else {
+          // If remaining time is not stored, calculate from displayed time
           const [minutes, seconds] = previousTime.split(":").map(Number);
           totalSeconds = minutes * 60 + seconds - 1;
         }
@@ -160,8 +180,21 @@ export default function TimerDisplay() {
 
   const stopTimer = () => {
     clearInterval(intervalRef.current!);
-    setIsRunning(false);
+    // Store remaining time when the timer is stopped
+    setRemainingTime(timerToSeconds(timer));
+    // Only set isRunning to false if the timer is currently running
+    if (!panelOption) {
+      setIsRunning(false);
+    }
   };
+
+  // Helper function to convert timer format to seconds
+  const timerToSeconds = (time: string): number => {
+    const [minutes, seconds] = time.split(":").map(Number);
+    return minutes * 60 + seconds;
+  };
+
+  console.log(isRunning);
 
   const handleStartButtonClick = () => {
     if (!isRunning) {
