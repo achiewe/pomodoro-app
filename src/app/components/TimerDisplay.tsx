@@ -51,7 +51,11 @@ export default function TimerDisplay() {
     return `${formattedMinutes}:00`;
   }
 
+  const [remainingTime, setRemainingTime] = useState<number | null>(null);
+
   useEffect(() => {
+    if (!isRunning || remainingTime === null) return;
+
     const sessionTime =
       panelOption === "pomodoro"
         ? pomodoroTimer
@@ -61,71 +65,49 @@ export default function TimerDisplay() {
         ? longBreak
         : 0;
 
-    const initialCircle1Dashoffset =
-      panelOption === "pomodoro"
-        ? 753
-        : panelOption === "short break"
-        ? 753 // Adjust this value according to your needs
-        : panelOption === "long break"
-        ? 753 // Adjust this value according to your needs
-        : 0;
+    let currentTime = remainingTime;
 
-    const initialCircle2Dashoffset =
-      panelOption === "pomodoro"
-        ? 1161
-        : panelOption === "short break"
-        ? 1161 // Adjust this value according to your needs
-        : panelOption === "long break"
-        ? 1161 // Adjust this value according to your needs
-        : 0;
+    intervalRef.current = setInterval(() => {
+      currentTime -= 1;
 
-    setCircle1Dashoffset(initialCircle1Dashoffset);
-    setCircle2Dashoffset(initialCircle2Dashoffset);
+      if (currentTime <= 0) {
+        clearInterval(intervalRef.current!);
+        setIsRunning(false);
+        setCircle1Dashoffset(0);
+        setCircle2Dashoffset(0);
+        setTimer("00:00");
+        return;
+      }
 
-    let currentTime = sessionTime * 60; // Convert session time to seconds
+      const circle1DashoffsetValue = Math.max(
+        0,
+        (753 * currentTime) / (sessionTime * 60)
+      );
+      const circle2DashoffsetValue = Math.max(
+        0,
+        (1161 * currentTime) / (sessionTime * 60)
+      );
 
-    if (isRunning) {
-      intervalRef.current = setInterval(() => {
-        currentTime -= 1; // Decrease currentTime by 1 second
+      const minutes = Math.floor(currentTime / 60);
+      const seconds = currentTime % 60;
+      const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+        seconds
+      ).padStart(2, "0")}`;
 
-        if (currentTime <= 0) {
-          clearInterval(intervalRef.current!);
-          setIsRunning(false);
-          currentTime = 0;
-          setCircle1Dashoffset(0); // Set circle1Dashoffset to 0 when timer reaches 00:00
-          setCircle2Dashoffset(0); // Set circle2Dashoffset to 0 when timer reaches 00:00
-          setTimer("00:00"); // Set timer to 00:00 when timer reaches 00:00
-          return;
-        }
+      setCircle1Dashoffset(circle1DashoffsetValue);
+      setCircle2Dashoffset(circle2DashoffsetValue);
+      setTimer(formattedTime);
+    }, 1000);
 
-        // Calculate dashoffset values based on current time and session time
-        const circle1DashoffsetValue = Math.max(
-          0,
-          (753 * currentTime) / (sessionTime * 60) // Adjust this calculation to your needs
-        );
-        const circle2DashoffsetValue = Math.max(
-          0,
-          (1161 * currentTime) / (sessionTime * 60) // Adjust this calculation to your needs
-        );
-
-        // Format remaining time as MM:SS
-        const minutes = Math.floor(currentTime / 60);
-        const seconds = currentTime % 60;
-        const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
-          seconds
-        ).padStart(2, "0")}`;
-
-        // Set the state variables with calculated values
-        setCircle1Dashoffset(circle1DashoffsetValue);
-        setCircle2Dashoffset(circle2DashoffsetValue);
-        setTimer(formattedTime);
-      }, 1000);
-    }
-
-    return () => {
-      clearInterval(intervalRef.current!);
-    };
-  }, [panelOption, isRunning, pomodoroTimer, shortBreak, longBreak]);
+    return () => clearInterval(intervalRef.current!);
+  }, [
+    isRunning,
+    panelOption,
+    pomodoroTimer,
+    shortBreak,
+    longBreak,
+    remainingTime,
+  ]);
 
   function getInitialTimerValue(option: string): string {
     switch (option) {
@@ -139,62 +121,21 @@ export default function TimerDisplay() {
         return "00:00";
     }
   }
-
-  const [remainingTime, setRemainingTime] = useState<number | null>(null);
-
-  const startTimer = () => {
-    setIsRunning(true);
-    intervalRef.current = setInterval(() => {
-      setTimer((previousTime) => {
-        let totalSeconds;
-        if (remainingTime !== null) {
-          // If remaining time is stored, use it
-          totalSeconds = remainingTime;
-          setRemainingTime((prevTime) => {
-            if (prevTime !== null && prevTime > 0) return prevTime - 1;
-            else return null;
-          });
-        } else {
-          // If remaining time is not stored, calculate from displayed time
-          const [minutes, seconds] = previousTime.split(":").map(Number);
-          totalSeconds = minutes * 60 + seconds - 1;
-        }
-
-        if (totalSeconds < 0) {
-          clearInterval(intervalRef.current!);
-          setIsRunning(false);
-          setCircle1Dashoffset(0);
-          setCircle2Dashoffset(0);
-          setTimer("00:00");
-          return "00:00";
-        }
-
-        const newMinutes = Math.floor(totalSeconds / 60);
-        const newSeconds = totalSeconds % 60;
-        return `${String(newMinutes).padStart(2, "0")}:${String(
-          newSeconds
-        ).padStart(2, "0")}`;
-      });
-    }, 1000);
-  };
-
-  const stopTimer = () => {
-    clearInterval(intervalRef.current!);
-    // Store remaining time when the timer is stopped
-    setRemainingTime(timerToSeconds(timer));
-    // Only set isRunning to false if the timer is currently running
-    if (!panelOption) {
-      setIsRunning(false);
-    }
-  };
-
-  // Helper function to convert timer format to seconds
   const timerToSeconds = (time: string): number => {
     const [minutes, seconds] = time.split(":").map(Number);
     return minutes * 60 + seconds;
   };
 
-  console.log(isRunning);
+  const startTimer = () => {
+    setIsRunning(true);
+    setRemainingTime(timerToSeconds(timer));
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalRef.current!);
+    setIsRunning(false);
+    setRemainingTime(null);
+  };
 
   const handleStartButtonClick = () => {
     if (!isRunning) {
