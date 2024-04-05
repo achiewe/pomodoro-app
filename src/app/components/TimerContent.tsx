@@ -171,7 +171,7 @@ export default function TimerContent() {
               : ""
           }`}
         >
-          {isRunning ? "STOP" : "START"}
+          {isRunning ? "PAUSE" : "START"}
         </button>
       </div>
     </div>
