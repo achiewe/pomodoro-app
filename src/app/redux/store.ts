@@ -11,6 +11,9 @@ import FontSettingSlice, { FontProps } from "./features/FontSettingSlice";
 import CircleDashMobSlice, {
   CircleMobProps,
 } from "./features/CircleDashMobSlice";
+import CIrcleDashTabSlice, {
+  CircleTabProps,
+} from "./features/CIrcleDashTabSlice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +25,7 @@ const store = configureStore({
     contentColor: ColorSettingSlice,
     fontContent: FontSettingSlice,
     circleDashMoboffset: CircleDashMobSlice,
+    CIrcleDashTabSlice: CIrcleDashTabSlice,
   },
 });
 
@@ -34,6 +38,7 @@ export type RootState = {
   contentColor: ColorContProps;
   fontContent: FontProps;
   circleDashMoboffset: CircleMobProps;
+  CIrcleDashTabSlice: CircleTabProps;
 };
 
 export default store;
