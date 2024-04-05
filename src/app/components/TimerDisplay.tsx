@@ -15,7 +15,7 @@ export default function TimerDisplay() {
     (store: RootState) => store.circleDashTaboffset.circleDashTaboffset
   );
   return (
-    <div>
+    <>
       <svg
         width="267.805px"
         height="267.805px"
@@ -81,6 +81,6 @@ export default function TimerDisplay() {
           fill="transparent"
         ></circle>
       </svg>
-    </div>
+    </>
   );
 }

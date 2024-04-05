@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect, useRef, useState } from "react";
 import TimerDisplay from "./TimerDisplay";
+import { setCircleDashMoboffset } from "../redux/features/CircleDashMobSlice";
+import { setCircleDashTaboffset } from "../redux/features/CIrcleDashTabSlice";
 
 export default function TimerContent() {
   const dispatch = useDispatch();
@@ -22,21 +24,10 @@ export default function TimerContent() {
   const fontContent = useSelector(
     (store: RootState) => store.fontContent.fontContent
   );
-  const circleDashTaboffset = useSelector(
-    (store: RootState) => store.circleDashTaboffset.circleDashTaboffset
-  );
-  const circleDashMoboffset = useSelector(
-    (store: RootState) => store.circleDashMoboffset.circleDashMoboffset
-  );
 
-  const [circle1Dashoffset, setCircle1Dashoffset] = useState(753);
-  const [circle2Dashoffset, setCircle2Dashoffset] = useState(1161);
   const [timer, setTimer] = useState(getInitialTimerValue(panelOption));
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  console.log(circle1Dashoffset, "circle1Dashoffset");
-  console.log(circle2Dashoffset, "circle2Dashoffset");
 
   useEffect(() => {
     if (isRunning) {
@@ -79,8 +70,8 @@ export default function TimerContent() {
       if (currentTime <= 0) {
         clearInterval(intervalRef.current!);
         setIsRunning(false);
-        setCircle1Dashoffset(0);
-        setCircle2Dashoffset(0);
+        dispatch(setCircleDashMoboffset(0));
+        dispatch(setCircleDashTaboffset(0));
         setTimer("00:00");
         return;
       }
@@ -100,8 +91,8 @@ export default function TimerContent() {
         seconds
       ).padStart(2, "0")}`;
 
-      setCircle1Dashoffset(circle1DashoffsetValue);
-      setCircle2Dashoffset(circle2DashoffsetValue);
+      dispatch(setCircleDashMoboffset(circle1DashoffsetValue));
+      dispatch(setCircleDashTaboffset(circle2DashoffsetValue));
       setTimer(formattedTime);
     }, 1000);
 
