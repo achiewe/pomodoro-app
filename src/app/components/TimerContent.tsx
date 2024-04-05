@@ -2,6 +2,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect, useRef, useState } from "react";
+import TimerDisplay from "./TimerDisplay";
 
 export default function TimerContent() {
   const panelOption = useSelector(
@@ -146,7 +147,7 @@ export default function TimerContent() {
   return (
     <div className="w-[267.805px] md:w-[410px] h-[267.805px] md:h-[410px] mt-[50px] mb-[100px] shadow-amber-600 rounded-full bg-[#161932] flex justify-center items-center relative">
       <audio className="hidden"></audio>
-      <TimerContent />
+      <TimerDisplay />
       <div className="flex flex-col w-full justify-center items-center gap-[5px]">
         <h1
           className={`text-[80px] leading-[118.48px] tracking-[-10px] font-normal text-[#D7E0FF] ${

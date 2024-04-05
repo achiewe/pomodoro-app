@@ -1,6 +1,12 @@
 "use client";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+
 export default function TimerDisplay() {
+  const contentColor = useSelector(
+    (store: RootState) => store.contentColor.contentColor
+  );
   return (
     <div>
       <svg
