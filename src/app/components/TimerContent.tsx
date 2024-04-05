@@ -28,6 +28,7 @@ export default function TimerContent() {
   const [timer, setTimer] = useState(getInitialTimerValue(panelOption));
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [remainingTime, setRemainingTime] = useState<number | null>(null);
 
   useEffect(() => {
     if (isRunning) {
@@ -47,8 +48,6 @@ export default function TimerContent() {
     const formattedMinutes = String(minutes).padStart(2, "0");
     return `${formattedMinutes}:00`;
   }
-
-  const [remainingTime, setRemainingTime] = useState<number | null>(null);
 
   useEffect(() => {
     if (!isRunning || remainingTime === null) return;
