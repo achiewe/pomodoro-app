@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface circleMobProps {
+export interface CircleMobProps {
   circleDashoffset: number;
 }
 
-const initialState: circleMobProps = {
+const initialState: CircleMobProps = {
   circleDashoffset: 753,
 };
 
