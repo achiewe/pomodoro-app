@@ -7,6 +7,13 @@ export default function TimerDisplay() {
   const contentColor = useSelector(
     (store: RootState) => store.contentColor.contentColor
   );
+  const circleDashMoboffset = useSelector(
+    (store: RootState) => store.circleDashMoboffset.circleDashMoboffset
+  );
+
+  const circleDashTaboffset = useSelector(
+    (store: RootState) => store.circleDashTaboffset.circleDashTaboffset
+  );
   return (
     <div>
       <svg
@@ -31,7 +38,7 @@ export default function TimerDisplay() {
           }
           strokeWidth="10px"
           strokeDasharray="753px"
-          strokeDashoffset={circle1Dashoffset}
+          strokeDashoffset={circleDashMoboffset}
         ></circle>
         <circle
           id="circle2"
@@ -64,7 +71,7 @@ export default function TimerDisplay() {
           }
           strokeWidth="20px"
           strokeDasharray="1161px"
-          strokeDashoffset={circle2Dashoffset}
+          strokeDashoffset={circleDashTaboffset}
         ></circle>
         <circle
           id="circle2"

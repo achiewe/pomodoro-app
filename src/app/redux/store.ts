@@ -25,7 +25,7 @@ const store = configureStore({
     contentColor: ColorSettingSlice,
     fontContent: FontSettingSlice,
     circleDashMoboffset: CircleDashMobSlice,
-    CIrcleDashTabSlice: CIrcleDashTabSlice,
+    circleDashTaboffset: CIrcleDashTabSlice,
   },
 });
 
@@ -38,7 +38,7 @@ export type RootState = {
   contentColor: ColorContProps;
   fontContent: FontProps;
   circleDashMoboffset: CircleMobProps;
-  CIrcleDashTabSlice: CircleTabProps;
+  circleDashTaboffset: CircleTabProps;
 };
 
 export default store;

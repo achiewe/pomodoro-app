@@ -1,10 +1,11 @@
 "use client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect, useRef, useState } from "react";
 import TimerDisplay from "./TimerDisplay";
 
 export default function TimerContent() {
+  const dispatch = useDispatch();
   const panelOption = useSelector(
     (store: RootState) => store.panelOption.panelOption
   );
@@ -20,6 +21,12 @@ export default function TimerContent() {
 
   const fontContent = useSelector(
     (store: RootState) => store.fontContent.fontContent
+  );
+  const circleDashTaboffset = useSelector(
+    (store: RootState) => store.circleDashTaboffset.circleDashTaboffset
+  );
+  const circleDashMoboffset = useSelector(
+    (store: RootState) => store.circleDashMoboffset.circleDashMoboffset
   );
 
   const [circle1Dashoffset, setCircle1Dashoffset] = useState(753);
