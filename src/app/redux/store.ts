@@ -21,7 +21,7 @@ const store = configureStore({
     longBreak: LongBreakSlice,
     contentColor: ColorSettingSlice,
     fontContent: FontSettingSlice,
-    circleDashoffset: CircleDashMobSlice,
+    circleDashMoboffset: CircleDashMobSlice,
   },
 });
 
@@ -33,7 +33,7 @@ export type RootState = {
   longBreak: LongBreakProps;
   contentColor: ColorContProps;
   fontContent: FontProps;
-  circleDashoffset: CircleMobProps;
+  circleDashMoboffset: CircleMobProps;
 };
 
 export default store;

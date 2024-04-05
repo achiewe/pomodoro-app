@@ -1,22 +1,22 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface CircleMobProps {
-  circleDashoffset: number;
+  circleDashMoboffset: number;
 }
 
 const initialState: CircleMobProps = {
-  circleDashoffset: 753,
+  circleDashMoboffset: 753,
 };
 
 const CircleDashMobSlice = createSlice({
-  name: "circle1Dashoffset",
+  name: "circleDashMoboffset",
   initialState,
   reducers: {
-    setCircleDashoffset: (state, action: PayloadAction<number>) => {
-      state.circleDashoffset = action.payload;
+    setCircleDashMoboffset: (state, action: PayloadAction<number>) => {
+      state.circleDashMoboffset = action.payload;
     },
   },
 });
 
-export const { setCircleDashoffset } = CircleDashMobSlice.actions;
+export const { setCircleDashMoboffset } = CircleDashMobSlice.actions;
 export default CircleDashMobSlice.reducer;
